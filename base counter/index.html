@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="app">
+        <p class="info">{{text}} {{counter}}</p>
+        <!-- <p class="info">{{text + "rgfsdfs"}} {{(counter + 4) * 3}}</p> Так же работало бы -->
+        <div class="btnCont">
+            <button class="btn add" v-on:click="counter++ ">Добавить</button>
+            <button class="btn remove" v-on:click="counter--">Отнять</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="app">
+        <p class="title">{{text}}</p>
+        <div class="form">
+            <!-- <input type="text" class="inp" placeholder={{placeholder}}> В итоге это не сработает, так как нелзя передавать в 
+             аттрибуты значения с помощью интерполяции ({{ ... }}) -->
+            <input type="text" class="inp"
+            v-bind:placeholder="placeholder"
+            v-bind:value="inputValue" 
+            v-on:input="inputListener"
+            v-on:keypress.enter="addNote">
+            <!-- Теперь все работает, так как значение в аттриббут передается с помощью директивы v-bind: -->
+            <!-- При изменении value(вводе чего нибудь в поле), переменная inputValue не меняет своего значения сама по себе -->
+            <!-- После добавления директивы "v-on" метод inputListener будет вызываться после каждого события input, так же как и 
+            в случае с обычным eventListener мы получаем в метод inputListener объект event -->
+            <!-- Для добавления заметки при нажатии Enter мы использовали метод inputKey (v-on:keypress="inputKey"), 
+            однако это можно было сделать и без него используя модификаторы. -->
+            <button class = "btn add" v-on:click="addNote">Add note</button>
+        </div>
+        <ul v-if="notes.length !== 0">
+            <!-- нам покажется тег ul и все его дети только если условие v-if == true -->
+            <li v-for="(myNote, index) in notes" class="item">
+                {{ myNote }}
+                <button class="btn remove" v-on:click = "removeNote(index)">Remove note</button>
+                <!-- Методы Vue можно вызывать как и с передачей параметров, так  и просто вписывая название метода -->
+            </li>
+            <!-- доступ к myNote есть только в элементе li-->
+        </ul>
+        <!-- <div class="warning" v-if="notes.length == 0">Заметок еще нет.</div>  Так же будет работать следующая запись-->
+        <div class="warning" v-else>{{ upperCase("Заметок еще нет.") }}</div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
