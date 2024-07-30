@@ -59,3 +59,12 @@ body{
     font-weight: bold;
     font-size: 20pt;
 }
+.count{
+    font-weight: bold;
+}
+.more{
+    color: rgb(231, 63, 63)
+}
+.less{
+    color:rgb(64, 225, 172)
+}
